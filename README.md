@@ -100,3 +100,9 @@ após todas as modificações feitas, rode ` terraform apply -var-file="prod.tfv
 
 Depois disso, destrua- da mesma forma: `terraform destroy -var-file="prod.tfvars" --auto-approve`
 e não esqueça de conferir na lista das instancias
+
+#### Interpolação, locals e outputs
+
+- [interpolação](https://developer.hashicorp.com/terraform/language/expressions/strings#interpolation)
+  .. Utilizar o resource, no registry, [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) para o nome aleatório do bucket
+-
