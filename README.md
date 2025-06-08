@@ -71,3 +71,32 @@ na sequencia, execute o comando `terraform apply "tfplan.out"` como ele sugere, 
 No caso de renomear o bucket, o plan do terraform irá nos informar que esse bucket precisará ser destruído para a criação de um novo.
 
 Agora para destruir definitivamente, é executar o `terraform destroy` e o recurso será destruído na aws
+
+#### Variáveis
+
+Criando uma instancia (EC2) no terraform
+Navegue no Ec2, simule criar uma nova e escolha uma instancia que seja free-tier, no caso utilizaremos a máquina aws linux, e copie seu código AMI (ami-02457590d33d576c3 por exemplo).
+Vá novamente na registry do terraform para procurar um [provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) de instancia ec2, procure por aws_instance e copie o trecho do resource "aws_instance"
+
+```
+resource "aws_instance" "web" {
+  ami           = ami-02457590d33d576c3
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "HelloWorld"
+  }
+}
+```
+
+caso não tenha um default, o terraform irá pedir eses valor no momento do plan, com isso podemos administrar variáveis de ambiente em um CI através do `TF_VAR_<Variavel de ambiente> terraform plan` ou através da flag -var `terraform plan -var="aws_profile=cael-terraform"`
+
+Pode-se criar o arquivo padrão de variáveis que o terraform lê automaticamente, chamado terraform.tfvars. Nele você adiciona todos os valores que serão setados nas variáveis de forma automática.
+Mais informações para ordem de precedencia do terraform estão na [documentação](https://developer.hashicorp.com/terraform/language/values/variables#variable-definition-precedence)
+
+Na arquitetura de variáveis, você pode escolher qual arquivo de variáveis é o definitivo para a execução no CI, como por exemplo `terraform plan -var-file="prod.tfvars"`
+
+após todas as modificações feitas, rode ` terraform apply -var-file="prod.tfvars" --auto-approve` e confirma se a instancia foi atualizada.
+
+Depois disso, destrua- da mesma forma: `terraform destroy -var-file="prod.tfvars" --auto-approve`
+e não esqueça de conferir na lista das instancias
