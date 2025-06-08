@@ -104,5 +104,5 @@ e não esqueça de conferir na lista das instancias
 #### Interpolação, locals e outputs
 
 - [interpolação](https://developer.hashicorp.com/terraform/language/expressions/strings#interpolation)
-  .. Utilizar o resource, no registry, [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) para o nome aleatório do bucket
--
+  .. Utilizar o resource, no registry, [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) para o nome aleatório do bucket -[Local values](https://developer.hashicorp.com/terraform/language/values/locals)
+  .. serve evitar duplicidades e redundâncias. Quando uma variavel parece estar sendo utilizado em mais de um lugar, vale a pena criar um locals.

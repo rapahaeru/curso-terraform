@@ -1,11 +1,12 @@
-resource "aws_s3_bucket" "rapahaeru-test-bucket" {
+resource "aws_s3_bucket" "this" {
   bucket = "${random_pet.bucket.id}-${var.enviroment}"
 
-  tags = {
-    Name        = "rapahaeru test bucket"
-    Environment = var.enviroment
-    Managedby   = "Terraform"
-    updatedBy   = "2025-06-07"
-    owner = "Raphael"
-  }
+  tags = local.common_tags
+}
+
+resource "aws_s3_object" "this" {
+  bucket = aws_s3_bucket.this.bucket
+  key    = "config/${local.filename}"
+  source = local.filename
+  etag   = filemd5(local.filename)
 }
