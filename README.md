@@ -106,3 +106,12 @@ e não esqueça de conferir na lista das instancias
 - [interpolação](https://developer.hashicorp.com/terraform/language/expressions/strings#interpolation)
   .. Utilizar o resource, no registry, [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) para o nome aleatório do bucket -[Local values](https://developer.hashicorp.com/terraform/language/values/locals)
   .. serve evitar duplicidades e redundâncias. Quando uma variavel parece estar sendo utilizado em mais de um lugar, vale a pena criar um locals.
+- [Output Values](https://developer.hashicorp.com/terraform/language/values/outputs)
+  .. Utilizado para valores de retorno em nossa tela ou em terraform modules
+  .. outputs gerado ao executar o `terraform apply` como exemplo desse commit
+  ```
+  bucket_arn = "arn:aws:s3:::actually-vaguely-highly-wondrous-snail-dev"
+  bucket_domain_name = "actually-vaguely-highly-wondrous-snail-dev.s3.amazonaws.com"
+  bucket_name = "actually-vaguely-highly-wondrous-snail-dev"
+  ips_file_path = "actually-vaguely-highly-wondrous-snail-dev/config/ips.json"
+  ```
