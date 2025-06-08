@@ -109,9 +109,16 @@ e não esqueça de conferir na lista das instancias
 - [Output Values](https://developer.hashicorp.com/terraform/language/values/outputs)
   .. Utilizado para valores de retorno em nossa tela ou em terraform modules
   .. outputs gerado ao executar o `terraform apply` como exemplo desse commit
+
   ```
   bucket_arn = "arn:aws:s3:::actually-vaguely-highly-wondrous-snail-dev"
   bucket_domain_name = "actually-vaguely-highly-wondrous-snail-dev.s3.amazonaws.com"
   bucket_name = "actually-vaguely-highly-wondrous-snail-dev"
   ips_file_path = "actually-vaguely-highly-wondrous-snail-dev/config/ips.json"
   ```
+
+  #### Terraform import
+
+  Você pode imprtar recursos criados manualmente fora do terraform para poder assumí-lo daqui em diante e passar a gerenciar pelo terraform
+
+- [documentação](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import) para importar o recurso do aws_s3_bucket
