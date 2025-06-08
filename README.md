@@ -117,8 +117,8 @@ e não esqueça de conferir na lista das instancias
   ips_file_path = "actually-vaguely-highly-wondrous-snail-dev/config/ips.json"
   ```
 
-  #### Terraform import
+#### Terraform import
 
-  Você pode imprtar recursos criados manualmente fora do terraform para poder assumí-lo daqui em diante e passar a gerenciar pelo terraform
+Você pode imprtar recursos criados manualmente fora do terraform para poder assumí-lo daqui em diante e passar a gerenciar pelo terraform
 
 - [documentação](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import) para importar o recurso do aws_s3_bucket
