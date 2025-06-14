@@ -10,6 +10,13 @@ terraform {
       version = "3.7.2"
     }
   }
+
+  backend "s3" {
+    bucket  = "tf-state010438491289"
+    key     = "dev/01-usando-remote-state/terraform.tfstate"
+    region  = "us-east-1"
+    profile = "cael-terraform"
+  }
 }
 
 provider "aws" {
@@ -22,10 +29,12 @@ provider "aws" {
 }
 
 resource "aws_instance" "this" {
-  ami                     = "ami-09e6f87a47903347c"
-  instance_type           = "t2.micro"
-  
+  ami           = "ami-09e6f87a47903347c"
+  instance_type = "t2.micro"
+
   tags = {
-    name = "Ec2-rapahaeru-terraform"
+    name  = "Ec2-rapahaeru-terraform"
+    Env   = "dev"
+    Owner = "rapahaeru"
   }
 }

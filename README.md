@@ -130,3 +130,10 @@ Você pode importar recursos criados manualmente fora do terraform para poder as
 Para uso coletivo, para que todos do time tenham acesso ao state mais atualizado sempre.
 
 Setando o backend no S3 - [documentação](https://developer.hashicorp.com/terraform/language/backend/s3#example-configuration)
+
+Aqui é necessário:
+
+- Subir um EC2, uma instancia
+- Subir um bucket para armazenar o remote state
+- Copiar o código do backend do link da documentação acima, dentro de `terraform {}` do _maint.tf_ do EC2
+-

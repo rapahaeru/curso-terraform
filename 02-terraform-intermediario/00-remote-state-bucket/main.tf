@@ -9,6 +9,7 @@ terraform {
       version = "3.7.2"
     }
   }
+
 }
 
 provider "aws" {
@@ -19,6 +20,8 @@ provider "aws" {
   # access_key = ""
   # secret_key = ""
 }
+
+
 
 // espécie de pull, aqui ele está puxando as informações de identificação da minha conta aws
 data "aws_caller_identity" "current" {}
