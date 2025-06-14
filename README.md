@@ -119,6 +119,14 @@ e não esqueça de conferir na lista das instancias
 
 #### Terraform import
 
-Você pode imprtar recursos criados manualmente fora do terraform para poder assumí-lo daqui em diante e passar a gerenciar pelo terraform
+Você pode importar recursos criados manualmente fora do terraform para poder assumí-lo daqui em diante e passar a gerenciar pelo terraform
 
 - [documentação](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import) para importar o recurso do aws_s3_bucket
+
+## Seção 04 - Terraform intermediário
+
+### Remote state no S3
+
+Para uso coletivo, para que todos do time tenham acesso ao state mais atualizado sempre.
+
+Setando o backend no S3 - [documentação](https://developer.hashicorp.com/terraform/language/backend/s3#example-configuration)
