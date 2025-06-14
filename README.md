@@ -149,3 +149,13 @@ O conteúdo do arquivo criado deve ser o conteúdo que está no backend = {} do 
     region  = "us-east-1"
     profile = "cael-terraform"
 ```
+
+### built in functions
+
+[Link](https://developer.hashicorp.com/terraform/language/functions) da documentação
+
+Trabalhando com:
+
+- data (template_file, archive_file) - manipulanod conteúdo de template e também arquivos físicos para upload em um S3
+- format(), lookup(), merge(), count
+- variáveis dinâmicas
