@@ -131,9 +131,21 @@ Para uso coletivo, para que todos do time tenham acesso ao state mais atualizado
 
 Setando o backend no S3 - [documentação](https://developer.hashicorp.com/terraform/language/backend/s3#example-configuration)
 
+O Backend é onde o arquivo terraform.tfstate será armazenado e versionado.
+
 Aqui é necessário:
 
-- Subir um EC2, uma instancia
-- Subir um bucket para armazenar o remote state
-- Copiar o código do backend do link da documentação acima, dentro de `terraform {}` do _maint.tf_ do EC2
--
+- Subir um EC2, uma instancia para qualquer tipo de manipulação de um servidor norma
+- Subir um bucket separado para ter onde armazenar o remote state e todas as suas alterações
+- Copiar o código do backend do link da documentação acima, dentro de `terraform {}` do _maint.tf_ do EC2.
+
+Uma forma alternativa de montar esse backend é montar um arquivo separado com a extensão _.hcl_ e chamar no path do init: `terraform init -backend=true -backend-config="arquivo_criado.hcl"`
+
+O conteúdo do arquivo criado deve ser o conteúdo que está no backend = {} do exemplo, no caso será:
+
+```
+    bucket  = "tf-state010438491289"
+    key     = "dev/01-usando-remote-state/terraform.tfstate"
+    region  = "us-east-1"
+    profile = "cael-terraform"
+```
