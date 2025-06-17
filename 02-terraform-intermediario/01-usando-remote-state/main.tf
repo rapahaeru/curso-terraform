@@ -30,7 +30,7 @@ provider "aws" {
 
 resource "aws_instance" "this" {
   ami           = "ami-09e6f87a47903347c"
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   tags = {
     name  = "Ec2-rapahaeru-terraform"

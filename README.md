@@ -159,3 +159,28 @@ Trabalhando com:
 - data (template_file, archive_file) - manipulanod conteúdo de template e também arquivos físicos para upload em um S3
 - format(), lookup(), merge(), count
 - variáveis dinâmicas
+
+### Data Sources ([Doc](https://developer.hashicorp.com/terraform/language/data-sources))
+
+- Como utilizar os Outputs no remote state
+- cada recurso (resource) possui o seu data source. Na página do S3 com o resource _aws_s3_bucket_ que usamos anteriormente, possui uma seção separada chamada [Data Sources](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/s3_bucket) com as infomrações do que é possível consultar.
+- A ideia do exercício é subir um EC2 sem ter um ami definido, então buscaremos um ami via data source para poder subir o nosso EC2
+- Manipulando o terraform outputs: exportando o conteúdo dos nossos outputs para um arquivo json `terraform output -json .s3/output.json`
+- reestruturando as pastas para separar o s3 do Ec2. assim cada pasta seria uma espécie de projeto separado como se cada time cuidasse de um, para isso vamos consumir o remote state do outro projeto.
+
+  [Problemas enfrentados aqui]
+  Com as instruções do curso, obtive problemas de compatibilidade da arquitetura da instancia com a AMI fornecida
+
+```
+Error: creating EC2 Instance: operation error EC2: RunInstances, https response error StatusCode: 400, RequestID: 935586a3-e8a8-4b2d-ad37-bac312270310, api error InvalidParameterValue: The architecture 'x86_64' of the specified instance type does not match the architecture 'arm64' of the specified AMI. Specify an instance type and an AMI that have matching architectures, and try again. You can use 'describe-instance-types' or 'describe-images' to discover the architecture of the instance type or AMI.
+```
+
+Para isso, precisei do comando abaixo para listar todas as amis compatíveis com a arquitetura que precisava, do t3.micro:
+
+```
+ aws ec2 describe-images --filters "Name=architecture,Values=x86_64" "Name=name,Values=*ubuntu*" --owners 099720109477  --query 'Images[*].{Name:Name,ID:ImageId}' --output table --no-verify-ssl
+```
+
+E precisei substituir o `name_regex` no ec2\data.tf para um mais específico.
+
+- agora estou conseguindo subir o arquivo instances para o Bucket S3 e ainda versionando o terraform.tfstate
