@@ -184,3 +184,9 @@ Para isso, precisei do comando abaixo para listar todas as amis compatíveis com
 E precisei substituir o `name_regex` no ec2\data.tf para um mais específico.
 
 - agora estou conseguindo subir o arquivo instances para o Bucket S3 e ainda versionando o terraform.tfstate
+
+### Foreach, for e splat operator
+
+- [foreach/set](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each#basic-syntax) expressions
+- [for](https://developer.hashicorp.com/terraform/language/expressions/for) expressions
+- [splat](https://developer.hashicorp.com/terraform/language/expressions/splat)
