@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "this" {
   bucket = var.name
-#   acl    = var.acl
-#   policy = var.policy
-  tags   = var.tags
+  #   acl    = var.acl
+  #   policy = var.policy
+  tags = var.tags
 
   dynamic "website" {
     for_each = length(keys(var.website)) == 0 ? [] : [var.website]

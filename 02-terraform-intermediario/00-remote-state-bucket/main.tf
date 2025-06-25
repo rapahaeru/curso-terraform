@@ -32,22 +32,22 @@ resource "aws_s3_bucket" "remote-state" {
   versioning {
     enabled = true
   }
-  
+
   tags = {
     Name        = "rapahaeru remote state bucket"
-    Description = "stores terraform remote states files" 
+    Description = "stores terraform remote states files"
     #Environment = var.enviroment
-    Managedby   = "Terraform"
-    UpdatedBy   = "2025-06-14"
-    Owner       = "rapahaeru"
+    Managedby = "Terraform"
+    UpdatedBy = "2025-06-14"
+    Owner     = "rapahaeru"
   }
 
 }
 
-  output "remote_state_bucket" {
-    value = aws_s3_bucket.remote-state.bucket
-  }
+output "remote_state_bucket" {
+  value = aws_s3_bucket.remote-state.bucket
+}
 
-  output "remote_state_arn" {
-    value = aws_s3_bucket.remote-state.arn
-  }
+output "remote_state_arn" {
+  value = aws_s3_bucket.remote-state.arn
+}

@@ -10,7 +10,7 @@ terraform {
     }
   }
 
-backend "s3" {
+  backend "s3" {
     bucket  = "tf-state010438491289"
     key     = "dev/03-data-source/terraform.tfstate"
     region  = "us-east-1"
