@@ -190,3 +190,7 @@ E precisei substituir o `name_regex` no ec2\data.tf para um mais específico.
 - [foreach/set](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each#basic-syntax) expressions
 - [for](https://developer.hashicorp.com/terraform/language/expressions/for) expressions
 - [splat](https://developer.hashicorp.com/terraform/language/expressions/splat)
+
+### Modules
+
+- [link](https://developer.hashicorp.com/terraform/language/modules) documentação

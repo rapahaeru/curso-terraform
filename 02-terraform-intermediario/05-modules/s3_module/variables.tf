@@ -6,7 +6,7 @@ variable "name" {
 variable "acl" {
   type        = string
   description = ""
-  default     = "public"
+  default     = "public-read"
 }
 
 variable "policy" {
