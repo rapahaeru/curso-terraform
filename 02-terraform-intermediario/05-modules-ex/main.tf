@@ -25,8 +25,8 @@ locals {
   }
 }
 
-module "basic_module_ex" {
-  source   = "./basic_module_ex"
+module "create_and_upload" {
+  source   = "./create_and_upload"
   for_each = local.file_contents
 
   filename = each.key

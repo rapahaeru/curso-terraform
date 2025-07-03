@@ -196,3 +196,4 @@ E precisei substituir o `name_regex` no ec2\data.tf para um mais específico.
 - [link](https://developer.hashicorp.com/terraform/language/modules) documentação
 - Os módulos normalmente esperam que se tenha pelo menos o main.tf, variables.tf e outputs.tf
 - Os módulos são uma espécie de bloco
+- criado um teste exemplo chamado _05-module-ex_ com o módulo chamado _create_and_upload_
