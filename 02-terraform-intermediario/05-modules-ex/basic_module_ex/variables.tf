@@ -1,4 +1,3 @@
-
 variable "filename" {
   description = "nome do arquivo"
   type        = string
@@ -15,5 +14,8 @@ variable "path" {
   description = "caminho do arquivo"
   type        = string
   default     = null
-
 }
+
+# variable "files" {
+#   type = map(string)
+# }

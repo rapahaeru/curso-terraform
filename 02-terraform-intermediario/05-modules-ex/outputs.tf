@@ -6,3 +6,7 @@ output "filename_echo_list" {
 output "all" {
   value = "finalizado"
 }
+
+# output "debug_content" {
+#   value = module.basic_module_ex.debug_content
+# }
