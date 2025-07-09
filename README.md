@@ -230,3 +230,20 @@ Entendendo a utilização dos workspaces:
 No exemplo, depois da inicialização dos workspaces, toda movimentação feita, criação e deleção, será refletido diretamente na aws. Dessa forma fica tudo mais automático para executar algumas funcionalidades, masta criar o workspace (e que automaticamente ele é acessado), tudo é criado sozinho.
 
 Informação importante: como dito, o mesmo se aplica ao apagar o workspace, ele sendo deletado localmente, toda sua estrutura é removida na aws, tanto no dynamo, quanto no bucket. Porém para que essa deleção seja feita, é preciso que o ambiente tenha sido destruído antes, pois ele vai acusar que existe itens, como as instancias, e se remover o workspace apenas, ela permancerá ainda na aws sem controle do terraform. Por isso, execute o destroy estando no workspace (por ex dev) depois mude para outro workspace, por ex prod, e execute a deleção do dev. Caso esteja no workspace em que será deletado o terraform o bloqueia.
+
+### Null resources e provisioners - [doc](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource)
+
+No caso de execução de um comando no shell do wwindows, foi necessário substituir o `$VAR` de ambiente para `%VAR%` no exemplo:
+
+```
+  provisioner "local-exec" {
+    command = "echo %FOO% %BAR% %BAZ% %TIME% >> env_vars.txt"
+
+    environment = {
+      FOO  = "bar"
+      BAR  = 1
+      BAZ  = "true"
+      TIME = timestamp()
+    }
+  }
+```
