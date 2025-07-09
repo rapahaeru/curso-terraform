@@ -1,6 +1,10 @@
 # curso-terraform
 
 praticando curso de terraform com aws https://redarborbrasil.udemy.com/course/aws-com-terraform/
+[github](https://github.com/chgasparoto/curso-aws-com-terraform) com código fonte do curso - Cléber Gasparotto
+mais informações, como acesso e anotações, no [meu notion](https://www.notion.so/Terraform-v0-14-Automatizando-sua-infraestrutura-na-AWS-20594d62338680ab9466d3848d624225)
+[Documentação]((https://developer.hashicorp.com/terraform/) da ferramenta
+[Registry](https://registry.terraform.io/) do terraform para implementar os resources
 
 ## Seção 03 - Terraform básico
 
@@ -197,3 +201,32 @@ E precisei substituir o `name_regex` no ec2\data.tf para um mais específico.
 - Os módulos normalmente esperam que se tenha pelo menos o main.tf, variables.tf e outputs.tf
 - Os módulos são uma espécie de bloco
 - criado um teste exemplo chamado _05-module-ex_ com o módulo chamado _create_and_upload_
+
+### Workspaces
+
+Com workspaces, podemos ter ambientes diferentes, como dev e prod, utilizanod o mesmo backend, poiso que iremos trocar serão apenas os workspaces, as variaveis baseadas nesse workspace.
+
+Exemplo:
+
+- um processo de CI/CD em que precisamos de dois ambientes dev e prod.
+- levantar um ambiente para testar coisas novas, sem querer mexer no que já está funcionando
+
+- utilizar `terrform workspace -h` para ter a lista de ações
+  .. - para criar um novo: `terraform workspace new <nome>`
+  .. - para lista workspaces: `terraform workspace list`
+  .. - para selecionar um workspace: `terraform workspace select <nome>`
+  .. - para deletar um workspace: `terraform workspace delete <nome>` porém se o workspace estiver ativo (selecionado) ele precisa mudar de workspace para poder assim ser apagado.
+  .. - Se tentar deletar sem o workspace estar vazio, é necessário destruir antes, pois caso force o seu delete, ficarão recursos na aws que não serão gerenciados mais pelo terraform
+
+Neste exemplo será criado um backend em S3 para salvar o tfstate e instancias de acordo com o workspace de **dev** ou **prod**
+
+Para conseguir simular o exemplo aqui:
+
+- é preciso levantar o backend, basta fazer o apply do remote state (00-remote-state)
+- em seguida ir até o main criado do 06-workspaces e executar o init, para inicializar o backend
+- nada acontecerá até aqui, somente depois de criar o workspace de dev (terraform workspace new dev), será executado o upload para o backend, criando a pasta 06-workspace no bucket, dentro da pasta env:/
+
+Entendendo a utilização dos workspaces:
+No exemplo, depois da inicialização dos workspaces, toda movimentação feita, criação e deleção, será refletido diretamente na aws. Dessa forma fica tudo mais automático para executar algumas funcionalidades, masta criar o workspace (e que automaticamente ele é acessado), tudo é criado sozinho.
+
+Informação importante: como dito, o mesmo se aplica ao apagar o workspace, ele sendo deletado localmente, toda sua estrutura é removida na aws, tanto no dynamo, quanto no bucket. Porém para que essa deleção seja feita, é preciso que o ambiente tenha sido destruído antes, pois ele vai acusar que existe itens, como as instancias, e se remover o workspace apenas, ela permancerá ainda na aws sem controle do terraform. Por isso, execute o destroy estando no workspace (por ex dev) depois mude para outro workspace, por ex prod, e execute a deleção do dev. Caso esteja no workspace em que será deletado o terraform o bloqueia.

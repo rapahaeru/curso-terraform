@@ -1,0 +1,9 @@
+{
+    "ID": "0866898a-a156-25dc-ae26-220698bd0caf",
+    "Operation": "OperationTypeApply",
+    "Info": "",
+    "Who": "CATHO_ONLINE\\raphael.oliveira@N-CATHO-015217",
+    "Version": "1.12.1",
+    "Created": "2025-07-09T15:49:55.841067Z",
+    "Path": "tf-state010438491289/env:/prod/06-workspaces/terraform.tfstate"
+}
