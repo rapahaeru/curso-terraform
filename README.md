@@ -1,10 +1,16 @@
 # curso-terraform
 
-praticando curso de terraform com aws https://redarborbrasil.udemy.com/course/aws-com-terraform/
-[github](https://github.com/chgasparoto/curso-aws-com-terraform) com código fonte do curso - Cléber Gasparotto
+### praticando curso de terraform com aws
+
+##### Itens importantes
+
+- [curso](https://redarborbrasil.udemy.com/course/aws-com-terraform/)
+
+- [github](https://github.com/chgasparoto/curso-aws-com-terraform) com código fonte do curso - Cléber Gasparotto
+- [Documentação](https://developer.hashicorp.com/terraform/) da ferramenta
+- [Registry](https://registry.terraform.io/) do terraform para implementar os resources
+
 mais informações, como acesso e anotações, no [meu notion](https://www.notion.so/Terraform-v0-14-Automatizando-sua-infraestrutura-na-AWS-20594d62338680ab9466d3848d624225)
-[Documentação]((https://developer.hashicorp.com/terraform/) da ferramenta
-[Registry](https://registry.terraform.io/) do terraform para implementar os resources
 
 ## Seção 03 - Terraform básico
 
@@ -226,10 +232,10 @@ Para conseguir simular o exemplo aqui:
 - em seguida ir até o main criado do 06-workspaces e executar o init, para inicializar o backend
 - nada acontecerá até aqui, somente depois de criar o workspace de dev (terraform workspace new dev), será executado o upload para o backend, criando a pasta 06-workspace no bucket, dentro da pasta env:/
 
-Entendendo a utilização dos workspaces:
-No exemplo, depois da inicialização dos workspaces, toda movimentação feita, criação e deleção, será refletido diretamente na aws. Dessa forma fica tudo mais automático para executar algumas funcionalidades, masta criar o workspace (e que automaticamente ele é acessado), tudo é criado sozinho.
-
-Informação importante: como dito, o mesmo se aplica ao apagar o workspace, ele sendo deletado localmente, toda sua estrutura é removida na aws, tanto no dynamo, quanto no bucket. Porém para que essa deleção seja feita, é preciso que o ambiente tenha sido destruído antes, pois ele vai acusar que existe itens, como as instancias, e se remover o workspace apenas, ela permancerá ainda na aws sem controle do terraform. Por isso, execute o destroy estando no workspace (por ex dev) depois mude para outro workspace, por ex prod, e execute a deleção do dev. Caso esteja no workspace em que será deletado o terraform o bloqueia.
+> **Entendendo a utilização dos workspaces:**
+> No exemplo, depois da inicialização dos workspaces, toda movimentação feita, criação e deleção, será refletido diretamente na aws. Dessa forma fica tudo mais automático para executar algumas funcionalidades, masta criar o workspace (e que automaticamente ele é acessado), tudo é criado sozinho.
+>
+> **Informação importante:** como dito, o mesmo se aplica ao apagar o workspace, ele sendo deletado localmente, toda sua estrutura é removida na aws, tanto no dynamo, quanto no bucket. Porém para que essa deleção seja feita, é preciso que o ambiente tenha sido destruído antes, pois ele vai acusar que existe itens, como as instancias, e se remover o workspace apenas, ela permancerá ainda na aws sem controle do terraform. Por isso, execute o destroy estando no workspace (por ex dev) depois mude para outro workspace, por ex prod, e execute a deleção do dev. Caso esteja no workspace em que será deletado o terraform o bloqueia.
 
 ### Null resources e provisioners - [doc](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource)
 
