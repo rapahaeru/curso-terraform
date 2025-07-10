@@ -253,3 +253,37 @@ No caso de execução de um comando no shell do wwindows, foi necessário substi
     }
   }
 ```
+
+## Seção 05 - Criando um site estático
+
+### Introdução a infra
+
+Nessa sessão iremos aprender como criar uma infra estrutura para a gente poder hospedar um site estático na AWS utilizando esses recursos.
+
+- A gente vai trabalhar com a Amazon Route Fifty Three.
+- A gente vai trabalhar com Cloud front que vai ser a nossa CDN.
+- A gente vai aplicar um certificado da AWS para o nosso site ser HTTPS e nessa parte vai ser onde a gente vai hospedar os arquivos do nosso bucket.
+
+no nosso site, na verdade vai ser uma aplicação React que a gente vai subir utilizando um terraform e hospedar nos dois buckets.
+
+E como vai funcionar.
+
+Bom a gente vai ter duas partes: a primeira vai ser utilizar apenas os buckets, as urls dos buckets e do CDN e para a próxima parte a gente vai implementar um domínio customizado. Que aí sim conseguiremos aplicar nosso certificado HTTPS.
+
+##### O Fluxo
+
+- O usuário vai acessar o nosso site a nossa aplicação de fora da AWS vai bater na nossa Route 53. Que aqui dentro nós teremos as nossas hosted zones citadas.
+- Vai bater no nosso cache, e vai verificar se estiver cacheado não vai bater no nosso bucket. E se caso cache estiver expirado ele vai buscar as informações no bucket.
+- Nesta parte a gente pode ver tem _www_ e _no www_ significa se usuário entrar com _www_ ele vai ser redirecionado para o nosso bucket que não tem _www_.
+
+E assim a gente vai armazenar nossos arquivos da nossa aplicação num bucket central.
+
+### website utilizando react app
+
+Apenas criar a nova estrutura de pasta 03-site-estatico e instalar o create react app
+
+```
+npx create-react-app <nome da aplicacao>
+cd <nome da aplicacao>
+npm start
+```
